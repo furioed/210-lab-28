@@ -1,3 +1,7 @@
+// COMSC-210 | Lab 28 | Mamadou Sissoko
+// IDE used: Visual Studio Code
+// Adding more goat menu options to previous solution
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -44,7 +48,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 4) {
+    while (sel != 5) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -57,6 +61,10 @@ int main() {
             case 3:    
                 cout << "Displaying goat data.\n";
                 display_trip(trip);
+                break;
+            case 4:
+                trip.sort();
+                cout << "Goats sorted by alphabetical order.\n";
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -74,11 +82,12 @@ int main_menu() {
     cout << "[1] Add a goat\n";
     cout << "[2] Delete a goat\n";
     cout << "[3] List goats\n";
-    cout << "[4] Quit\n";
+    cout << "[4] Sorts goats in alphabetical order\n";
+    cout << "[5] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 4) {
+    while (choice < 1 || choice > 5) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
