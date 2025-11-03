@@ -48,7 +48,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 7) {
+    while (sel != 8) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -81,6 +81,17 @@ int main() {
                  cout << "The trip has no goats.\n";
                       }
                     break;  
+            case 7:
+              if (!trip.empty()) {
+                 Goat g = trip.back();
+                 cout << "Last goat in the trip:\n";
+                 cout << "\t" << g.get_name() 
+                      << " (" << g.get_age() 
+                      << ", " << g.get_color() << ")\n";
+              } else {
+                 cout << "The trip has no goats.\n";
+                      }
+                    break;  
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -100,11 +111,12 @@ int main_menu() {
     cout << "[4] Sorts goats in alphabetical order\n";
     cout << "[5] Sorts goats in reverse order\n";
     cout << "[6] Display the first goat\n";
-    cout << "[7] Quit\n";
+    cout << "[7] Display the last goat\n";
+    cout << "[8] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 7) {
+    while (choice < 1 || choice > 8) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
