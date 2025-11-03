@@ -48,7 +48,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 11) {
+    while (sel != 12) {
         switch (sel) {
             case 1: // Adds goat
                 cout << "Adding a goat.\n";
@@ -120,11 +120,24 @@ int main() {
              cout << "There are no goats to remove.\n";
               }
              break;
-        }
-
+        
+            case 11: // Generates a new list of goats
+              trip.clear();
+               {
+             int tripSize = rand() % 8 + 8; 
+             for (int i = 0; i < tripSize; i++) {
+             int age = rand() % MAX_AGE;
+             string nm = names[rand() % SZ_NAMES];
+             string cl = colors[rand() % SZ_COLORS];
+             trip.push_back(Goat(nm, age, cl));
+             }
+             cout << "Trip refilled with " << trip.size() << " random goats.\n";
+              }
+             break;
+     }
         sel = main_menu();
-    }
     
+    }
 
     return 0;
 }
@@ -141,11 +154,12 @@ int main_menu() {
     cout << "[8] Display goat total in list\n";
     cout << "[9] Display a random goat\n";
     cout << "[10] Clears list of goats\n";
-    cout << "[11] Quit\n";
+    cout << "[11] Generates a new list of goats\n";
+    cout << "[12] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 11) {
+    while (choice < 1 || choice > 12) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
