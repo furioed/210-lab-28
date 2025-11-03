@@ -48,29 +48,29 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 9) {
+    while (sel != 10) {
         switch (sel) {
-            case 1:
+            case 1: // Adds goat
                 cout << "Adding a goat.\n";
                 add_goat(trip, names, colors);
                 break;
-            case 2:    
+            case 2: // Removes goat
                 cout << "Removing a goat.\n";
                 delete_goat(trip);
                 break;
-            case 3:    
+            case 3: // Displays list of goat
                 cout << "Displaying goat data.\n";
                 display_trip(trip);
                 break;
-            case 4:
+            case 4: // Goats sorted by name
                 trip.sort();
                 cout << "Goats sorted by alphabetical order.\n";
                 break;
-            case 5:
+            case 5: // Goats sorted in reverse
                 trip.reverse();
                 cout << "Goats order is now reversed.\n";
                 break;
-            case 6:
+            case 6: // Displays first goat in trip
               if (!trip.empty()) {
                  Goat g = trip.front();
                  cout << "First goat in the trip:\n";
@@ -81,7 +81,7 @@ int main() {
                  cout << "The trip has no goats.\n";
                       }
                     break;  
-            case 7:
+            case 7: // Displays last goat in trip
               if (!trip.empty()) {
                  Goat g = trip.back();
                  cout << "Last goat in the trip:\n";
@@ -95,9 +95,23 @@ int main() {
             default:
                 cout << "Invalid selection.\n";
                 break;
-            case 8:
+            case 8: // Displays # of goats on trip
                 cout << "There are currently " << trip.size() << " goats in the trip.\n";
                 break;
+            case 9: // Displays a random goat
+              if (!trip.empty()) {
+                 int randomIndex = rand() % trip.size();
+                 auto it = trip.begin();
+                 advance(it, randomIndex);
+                 Goat g = *it;
+                 cout << "Random goat selected:\n";
+                 cout << "\t" << g.get_name()
+                      << " (" << g.get_age()
+                      << ", " << g.get_color() << ")\n";
+              } else { 
+                  cout << "No goats in the trip.\n";
+              }
+              break;
             
         }
 
@@ -118,11 +132,12 @@ int main_menu() {
     cout << "[6] Display the first goat\n";
     cout << "[7] Display the last goat\n";
     cout << "[8] Display goat total in list\n";
-    cout << "[9] Quit\n";
+    cout << "[9] Display a random goat\n";
+    cout << "[10] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 9) {
+    while (choice < 1 || choice > 10) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
